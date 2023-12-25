@@ -1,8 +1,7 @@
-// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:footwear_designer_247/designer/bottom_bar.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/pro_footwear.dart';
 import 'package:footwear_designer_247/designer/style_wear.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -49,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const BottomBarWear(),
+        builder: (context) => const ProFootwear()// BottomBarWear(),
       ),
     );
   }
