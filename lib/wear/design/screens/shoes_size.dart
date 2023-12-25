@@ -110,7 +110,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(color: Colors.transparent),
                       borderRadius:
-                          BorderRadius.circular(10), // Радиус скругления
+                          BorderRadius.circular(10),
                     ),
                     backgroundColor: ColorsWear.whiteGrey,
                     selectedColor: ColorsWear.pink,

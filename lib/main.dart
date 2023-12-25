@@ -11,8 +11,6 @@ void main() async {
   await Apphud.start(apiKey: DocWear.apphudApiKey);
   await Hive.initFlutter();
   Hive.registerAdapter(ShoeHiveModelAdapter());
-  // var box = await Hive.openBox<ShoeHiveModel>('shoes');
-  // box.clear();
   await Hive.openBox<ShoeHiveModel>('shoes');
   runApp(const WearApp());
 }
