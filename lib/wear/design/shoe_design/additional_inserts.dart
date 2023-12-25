@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/shoe_design/primary_colors.dart';
+import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class AdditionalInserts extends StatefulWidget {
   const AdditionalInserts({super.key});
@@ -15,49 +18,39 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
   int? selectedClaspIndex;
   int? selectedInsertIndex;
   final List<String> clasp = [
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
-    "assets/images/bootsType/thighHigh.png",
+    "assets/images/clasp/image 24.png",
+    "assets/images/clasp/image 25.png",
+    "assets/images/clasp/image 26.png",
+    "assets/images/clasp/image 27.png",
+    "assets/images/clasp/image 28.png",
+    "assets/images/clasp/image 29.png",
+    "assets/images/clasp/image 30.png",
+    "assets/images/clasp/image 31.png",
+    "assets/images/clasp/image 32.png",
+    "assets/images/clasp/image 33.png",
+    "assets/images/clasp/image 34.png",
+    "assets/images/clasp/image 35.png",
   ];
 
   final List<String> inserts = [
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
-    "assets/images/bootsType/army.png",
+    "assets/images/additional_inserts/image 24.png",
+    "assets/images/additional_inserts/image 25.png",
+    "assets/images/additional_inserts/image 26.png",
+    "assets/images/additional_inserts/image 27.png",
+    "assets/images/additional_inserts/image 28.png",
+    "assets/images/additional_inserts/image 29.png",
+    "assets/images/additional_inserts/image 30.png",
+    "assets/images/additional_inserts/image 31.png",
+    "assets/images/additional_inserts/image 32.png",
+    "assets/images/additional_inserts/image 33.png",
+    "assets/images/additional_inserts/image 34.png",
+    "assets/images/additional_inserts/Vector.png",
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        title: Text(
-          "Shoe design",
-          style: TextStyle(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.w600,
-            color: ColorsWear.black,
-          ),
-        ),
-      ),
+      appBar: buildShoeAppBar("Shoe design"),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -110,6 +103,14 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
                       setState(() {
                         selectedClaspIndex = index;
                       });
+
+                      var box = Hive.box<ShoeHiveModel>('shoes');
+                      var shoe = box.get('currentShoe') as ShoeHiveModel;
+                      shoe.additionalInserts = [
+                        ...shoe.additionalInserts,
+                        clasp[index]
+                      ];
+                      box.put('currentShoe', shoe);
                     },
                     child: Container(
                       padding: EdgeInsets.all(5.sp),
@@ -175,6 +176,13 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
                       setState(() {
                         selectedInsertIndex = index;
                       });
+                      var box = Hive.box<ShoeHiveModel>('shoes');
+                      var shoe = box.get('currentShoe') as ShoeHiveModel;
+                      shoe.additionalInserts = [
+                        ...shoe.additionalInserts,
+                        inserts[index]
+                      ];
+                      box.put('currentShoe', shoe);
                     },
                     child: Container(
                       padding: EdgeInsets.all(5.sp),
@@ -217,12 +225,12 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
                 text: "Next",
                 color: selectedClaspIndex != null && selectedInsertIndex != null
                     ? ColorsWear.pink
-                    : ColorsWear.grey,
+                    : ColorsWear.whiteGrey,
                 press: selectedClaspIndex != null && selectedInsertIndex != null
                     ? () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => PrimaryColors(),
+                            builder: (context) => const PrimaryColors(),
                           ),
                         );
                       }

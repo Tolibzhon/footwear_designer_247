@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/shoe_design/additional_inserts.dart';
+import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class SelectToeScreen extends StatefulWidget {
-  const SelectToeScreen({super.key});
+class ShoesToe extends StatefulWidget {
+  const ShoesToe({super.key});
 
   @override
-  State<SelectToeScreen> createState() => _SelectToeScreenState();
+  State<ShoesToe> createState() => _ShoesToeState();
 }
 
-class _SelectToeScreenState extends State<SelectToeScreen> {
+class _ShoesToeState extends State<ShoesToe> {
   String? selectedMaterial;
 
-  final materials = [
+  final toe = [
     "Budapester",
     "Classic round toe shoe",
     "Almond shaped shoe toe",
@@ -25,22 +28,28 @@ class _SelectToeScreenState extends State<SelectToeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("select material")),
+      appBar: buildShoeAppBar("Shoe design"),
       body: SafeArea(
         child: Column(
           children: [
             const Text("Select the toe of the shoe"),
             Expanded(
               child: ListView.builder(
-                itemCount: materials.length,
+                itemCount: toe.length,
                 itemBuilder: (context, index) {
                   return MaterialCard(
-                    text: materials[index],
-                    isSelected: selectedMaterial == materials[index],
+                    text: toe[index],
+                    isSelected: selectedMaterial == toe[index],
+                    // Внутри onTap() для MaterialCard
                     onTap: () {
                       setState(() {
-                        selectedMaterial = materials[index];
+                        selectedMaterial = toe[index];
                       });
+
+                      var box = Hive.box<ShoeHiveModel>('shoes');
+                      var shoe = box.get('currentShoe') as ShoeHiveModel;
+                      shoe.toeShoes = toe[index];
+                      box.put('currentShoe', shoe);
                     },
                   );
                 },
@@ -52,7 +61,7 @@ class _SelectToeScreenState extends State<SelectToeScreen> {
                 text: "Next",
                 color: selectedMaterial != null
                     ? ColorsWear.pink
-                    : ColorsWear.grey,
+                    : ColorsWear.whiteGrey,
                 press: selectedMaterial != null
                     ? () {
                         Navigator.of(context).push(
@@ -92,7 +101,7 @@ class MaterialCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         alignment: Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: isSelected ? ColorsWear.pink : ColorsWear.grey,
+          color: isSelected ? ColorsWear.pink : ColorsWear.whiteGrey,
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(

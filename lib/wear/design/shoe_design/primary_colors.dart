@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/shoe_design/shoes_result.dart';
+import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class PrimaryColors extends StatefulWidget {
   const PrimaryColors({super.key});
@@ -26,7 +29,6 @@ class _PrimaryColorsState extends State<PrimaryColors> {
     Colors.indigo,
   ];
 
-  // Обработчик нажатия на цвет
   void toggleColor(Color color) {
     setState(() {
       if (selectedColors.contains(color)) {
@@ -37,6 +39,11 @@ class _PrimaryColorsState extends State<PrimaryColors> {
         }
       }
     });
+
+    var box = Hive.box<ShoeHiveModel>('shoes');
+    var shoe = box.get('currentShoe') as ShoeHiveModel;
+    shoe.primaryColors = selectedColors.map((c) => c.value).toList();
+    box.put('currentShoe', shoe);
   }
 
   @override
@@ -44,9 +51,7 @@ class _PrimaryColorsState extends State<PrimaryColors> {
     bool isButtonEnabled = selectedColors.isNotEmpty;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Shoe design'),
-      ),
+      appBar: buildShoeAppBar("Shoe design"),
       body: Column(
         children: <Widget>[
           const Padding(
@@ -92,11 +97,10 @@ class _PrimaryColorsState extends State<PrimaryColors> {
             padding: const EdgeInsets.all(30.0),
             child: DefaultButton(
               text: "Finish",
-              color: isButtonEnabled ? ColorsWear.pink : ColorsWear.grey,
+              color: isButtonEnabled ? ColorsWear.pink : ColorsWear.greyLight,
               press: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    // TODO
                     builder: (context) => const ShoesResult(),
                   ),
                 );

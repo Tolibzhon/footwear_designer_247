@@ -1,34 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/select_toe.dart';
+import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/shoe_design/shoes_toe.dart';
+import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class SizeSelection extends StatefulWidget {
-  const SizeSelection({super.key});
+class ShoesSize extends StatefulWidget {
+  const ShoesSize({super.key});
 
   @override
-  State<SizeSelection> createState() => _SizeSelectionState();
+  State<ShoesSize> createState() => _ShoesSizeState();
 }
 
-class _SizeSelectionState extends State<SizeSelection> {
+class _ShoesSizeState extends State<ShoesSize> {
   int? _selectedSize;
   int? _selectedHeelHeight;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Shoe design'),
-      ),
+      appBar: buildShoeAppBar("Shoe design"),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
             SliverPadding(
               padding: EdgeInsets.all(20.w),
               sliver: SliverToBoxAdapter(
-                child:
-                    Text('Select shoe size', style: TextStyle(fontSize: 20.sp)),
+                child: Center(
+                  child: Text(
+                    'Select shoe size',
+                    style: TextStyle(
+                      color: ColorsWear.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
               ),
             ),
             SliverGrid(
@@ -42,16 +51,26 @@ class _SizeSelectionState extends State<SizeSelection> {
                 (BuildContext context, int index) {
                   return ChoiceChip(
                     showCheckmark: false,
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(color: Colors.transparent),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     label: Text('${35 + index}'),
                     selected: _selectedSize == 35 + index,
+                    backgroundColor: ColorsWear.whiteGrey,
                     selectedColor: ColorsWear.pink,
+                    // Пример для SizeSelection
                     onSelected: (bool selected) {
                       setState(() {
-                        if (selected) {
-                          _selectedSize = 35 + index;
-                        }
+                        _selectedSize = selected ? 35 + index : null;
                       });
+
+                      var box = Hive.box<ShoeHiveModel>('shoes');
+                      var shoe = box.get('currentShoe') as ShoeHiveModel;
+                      shoe.shoeSize = _selectedSize!;
+                      box.put('currentShoe', shoe);
                     },
+
                     labelStyle: TextStyle(
                       color: _selectedSize == 35 + index
                           ? Colors.white
@@ -65,8 +84,16 @@ class _SizeSelectionState extends State<SizeSelection> {
             SliverPadding(
               padding: EdgeInsets.all(20.w),
               sliver: SliverToBoxAdapter(
-                child: Text('Select heel height',
-                    style: TextStyle(fontSize: 20.sp)),
+                child: Center(
+                  child: Text(
+                    'Select heel height',
+                    style: TextStyle(
+                      color: ColorsWear.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
               ),
             ),
             SliverGrid(
@@ -80,14 +107,28 @@ class _SizeSelectionState extends State<SizeSelection> {
                 (BuildContext context, int index) {
                   return ChoiceChip(
                     showCheckmark: false,
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(color: Colors.transparent),
+                      borderRadius:
+                          BorderRadius.circular(10), // Радиус скругления
+                    ),
+                    backgroundColor: ColorsWear.whiteGrey,
                     selectedColor: ColorsWear.pink,
                     label: Text('${2 + index} cm'),
                     selected: _selectedHeelHeight == 2 + index,
+                    // Пример для SizeSelection
                     onSelected: (bool selected) {
-                      setState(() {
-                        _selectedHeelHeight = selected ? 2 + index : null;
-                      });
+                      setState(
+                        () {
+                          _selectedHeelHeight = selected ? 2 + index : null;
+                        },
+                      );
+                      var box = Hive.box<ShoeHiveModel>('shoes');
+                      var shoe = box.get('currentShoe') as ShoeHiveModel;
+                      shoe.heelHeight = _selectedHeelHeight!;
+                      box.put('currentShoe', shoe);
                     },
+
                     labelStyle: TextStyle(
                       color: _selectedHeelHeight == 2 + index
                           ? Colors.white
@@ -105,12 +146,12 @@ class _SizeSelectionState extends State<SizeSelection> {
                   text: "Next",
                   color: _selectedSize != null && _selectedHeelHeight != null
                       ? ColorsWear.pink
-                      : ColorsWear.grey,
+                      : ColorsWear.whiteGrey,
                   press: _selectedSize != null && _selectedHeelHeight != null
                       ? () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => const SelectToeScreen(),
+                              builder: (context) => const ShoesToe(),
                             ),
                           );
                         }

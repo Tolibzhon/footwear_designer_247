@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/select_material.dart';
+import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/shoe_design/shoes_material.dart';
+import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ShoesType extends StatefulWidget {
   const ShoesType({super.key});
@@ -62,17 +65,7 @@ class _ShoesTypeState extends State<ShoesType> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        title: Text(
-          "Shoe design",
-          style: TextStyle(
-            fontSize: 24.sp,
-            fontWeight: FontWeight.w600,
-            color: ColorsWear.black,
-          ),
-        ),
-      ),
+      appBar: buildShoeAppBar("Shoe design"),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -108,6 +101,7 @@ class _ShoesTypeState extends State<ShoesType> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 20.h),
                   Center(
                     child: Text(
                       "Select shoes type",
@@ -140,6 +134,22 @@ class _ShoesTypeState extends State<ShoesType> {
                         selectedShoeIndex = index;
                         _shoeNameController.text = shoes[index]["name"]!;
                       });
+
+                      var box = Hive.box<ShoeHiveModel>('shoes');
+                      var shoeId = DateTime.now().millisecondsSinceEpoch;
+                      var shoe = ShoeHiveModel(
+                        // TODO
+                        id: shoeId,
+                        title: shoes[index]["name"]!,
+                        imagePath: shoes[index]["image"]!,
+                        material: '',
+                        shoeSize: 0,
+                        heelHeight: 0,
+                        toeShoes: '',
+                        additionalInserts: [],
+                        primaryColors: [],
+                      );
+                      box.put(shoe.id.toString(), shoe);
                     },
                     child: Container(
                       padding: EdgeInsets.all(5.sp),
@@ -193,12 +203,12 @@ class _ShoesTypeState extends State<ShoesType> {
                 text: "Next",
                 color: selectedShoeIndex != null
                     ? ColorsWear.pink
-                    : ColorsWear.grey,
+                    : ColorsWear.whiteGrey,
                 press: selectedShoeIndex != null
                     ? () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const SelectMaterialScreen(),
+                            builder: (context) => const ShoesMaterial(),
                           ),
                         );
                       }

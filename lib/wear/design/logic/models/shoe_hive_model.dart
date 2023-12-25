@@ -14,13 +14,13 @@ class ShoeHiveModel extends HiveObject {
   @HiveField(4)
   int shoeSize;
   @HiveField(5)
-  int heelHight;
+  int heelHeight;
   @HiveField(6)
   String toeShoes;
   @HiveField(7)
   List<String> additionalInserts;
   @HiveField(8)
-  List<String> primaryColors;
+  List<int> primaryColors;
 
   ShoeHiveModel({
     required this.id,
@@ -28,7 +28,7 @@ class ShoeHiveModel extends HiveObject {
     required this.imagePath,
     required this.material,
     required this.shoeSize,
-    required this.heelHight,
+    required this.heelHeight,
     required this.toeShoes,
     required this.additionalInserts,
     required this.primaryColors,

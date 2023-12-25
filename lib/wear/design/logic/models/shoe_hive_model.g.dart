@@ -22,10 +22,10 @@ class ShoeHiveModelAdapter extends TypeAdapter<ShoeHiveModel> {
       imagePath: fields[2] as String,
       material: fields[3] as String,
       shoeSize: fields[4] as int,
-      heelHight: fields[5] as int,
+      heelHeight: fields[5] as int,
       toeShoes: fields[6] as String,
       additionalInserts: (fields[7] as List).cast<String>(),
-      primaryColors: (fields[8] as List).cast<String>(),
+      primaryColors: (fields[8] as List).cast<int>(),
     );
   }
 
@@ -44,7 +44,7 @@ class ShoeHiveModelAdapter extends TypeAdapter<ShoeHiveModel> {
       ..writeByte(4)
       ..write(obj.shoeSize)
       ..writeByte(5)
-      ..write(obj.heelHight)
+      ..write(obj.heelHeight)
       ..writeByte(6)
       ..write(obj.toeShoes)
       ..writeByte(7)

@@ -7,4 +7,5 @@ class ColorsWear {
   static const Color pink = Color(0xFFFF42B4);
   static const Color grey = Color(0xFF808080);
   static const Color greyLight = Color(0xFFAFAFAF);
+  static const Color whiteGrey = Color(0xFFDADADA);
 }
