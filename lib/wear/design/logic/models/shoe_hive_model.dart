@@ -4,23 +4,23 @@ part 'shoe_hive_model.g.dart';
 @HiveType(typeId: 1)
 class ShoeHiveModel extends HiveObject {
   @HiveField(0)
-  final int id;
+  int id;
   @HiveField(1)
-  final String title;
+  String title;
   @HiveField(2)
-  final String imagePath;
+  String imagePath;
   @HiveField(3)
-  final String material;
+  String material;
   @HiveField(4)
-  final int shoeSize;
+  int shoeSize;
   @HiveField(5)
-  final int heelHight;
+  int heelHight;
   @HiveField(6)
-  final String toeShoes;
+  String toeShoes;
   @HiveField(7)
-  final List<String> additionalInserts;
+  List<String> additionalInserts;
   @HiveField(8)
-  final List<String> primaryColors;
+  List<String> primaryColors;
 
   ShoeHiveModel({
     required this.id,

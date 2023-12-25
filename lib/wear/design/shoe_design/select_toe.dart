@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/size_selection.dart';
+import 'package:footwear_designer_247/wear/design/shoe_design/additional_inserts.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 
-class SelectMaterialScreen extends StatefulWidget {
-  const SelectMaterialScreen({super.key});
+class SelectToeScreen extends StatefulWidget {
+  const SelectToeScreen({super.key});
 
   @override
-  State<SelectMaterialScreen> createState() => _SelectMaterialScreenState();
+  State<SelectToeScreen> createState() => _SelectToeScreenState();
 }
 
-class _SelectMaterialScreenState extends State<SelectMaterialScreen> {
+class _SelectToeScreenState extends State<SelectToeScreen> {
   String? selectedMaterial;
 
-  final toe = [
-    'Suede',
-    'Artificial leather',
-    'Genuine Leather',
-    'Combination skin',
-    'Leather substitute (leatherette)',
-    'Felt',
-    'Nubuck artificial',
-    'Natural nubuck',
-    'Rubber',
+  final materials = [
+    "Budapester",
+    "Classic round toe shoe",
+    "Almond shaped shoe toe",
+    "Pointed nose",
+    "Soft square",
   ];
 
   @override
@@ -32,36 +29,40 @@ class _SelectMaterialScreenState extends State<SelectMaterialScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            const Text("Select material of manufacture"),
+            const Text("Select the toe of the shoe"),
             Expanded(
               child: ListView.builder(
-                itemCount: toe.length,
+                itemCount: materials.length,
                 itemBuilder: (context, index) {
                   return MaterialCard(
-                    text: toe[index],
-                    isSelected: selectedMaterial == toe[index],
+                    text: materials[index],
+                    isSelected: selectedMaterial == materials[index],
                     onTap: () {
                       setState(() {
-                        selectedMaterial = toe[index];
+                        selectedMaterial = materials[index];
                       });
                     },
                   );
                 },
               ),
             ),
-            DefaultButton(
-              text: "Next",
-              color:
-                  selectedMaterial != null ? ColorsWear.pink : ColorsWear.grey,
-              press: selectedMaterial != null
-                  ? () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) =>  const SizeSelection(),
-                        ),
-                      );
-                    }
-                  : null,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+              child: DefaultButton(
+                text: "Next",
+                color: selectedMaterial != null
+                    ? ColorsWear.pink
+                    : ColorsWear.grey,
+                press: selectedMaterial != null
+                    ? () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const AdditionalInserts(),
+                          ),
+                        );
+                      }
+                    : null,
+              ),
             ),
           ],
         ),

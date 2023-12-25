@@ -198,7 +198,7 @@ class _ShoesTypeState extends State<ShoesType> {
                     ? () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const SelectMaterial(),
+                            builder: (context) => const SelectMaterialScreen(),
                           ),
                         );
                       }
