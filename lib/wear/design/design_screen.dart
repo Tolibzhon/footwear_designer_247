@@ -12,60 +12,34 @@ class DesignScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var box = Hive.box<ShoeHiveModel>('shoes');
-    ShoeHiveModel? shoe = box.get('currentShoe');
-
-    bool hasData = shoe != null;
+    List<ShoeHiveModel> shoes = box.values.toList().cast<ShoeHiveModel>();
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Design creation',
+            style: StylesWear.style(
+                fontSize: 28.sp,
+                fontWeight: FontWeight.w700,
+                color: ColorsWear.black)),
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.sp),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Design creation',
-                    style: StylesWear.style(
-                      fontSize: 28.sp,
-                      fontWeight: FontWeight.w700,
-                      color: ColorsWear.black,
-                    ),
-                  ),
-                  ClipOval(
-                    child: Material(
-                      color: ColorsWear.pink,
-                      child: InkWell(
-                        splashColor: ColorsWear.white,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const ShoesType(),
-                            ),
-                          );
-                        },
-                        child: SizedBox(
-                          height: 35.h,
-                          width: 35.w,
-                          child: const Icon(
-                            Icons.add,
-                            color: ColorsWear.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Expanded(
-                child: hasData
-                    ? buildShoeDisplay(context, shoe)
-                    : buildEmptyState(context),
-              ),
-            ],
-          ),
+          child: shoes.isEmpty
+              ? buildEmptyState(context)
+              : buildShoesList(context, shoes),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const ShoesType(),
+            ),
+          );
+        },
+        backgroundColor: ColorsWear.pink,
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }
@@ -75,49 +49,32 @@ class DesignScreen extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image.asset(
-            "assets/images/logo.png",
-            height: 150.h,
-            width: 150.w,
-          ),
-          SizedBox(
-            height: 25.h,
-          ),
-          Text(
-            'Create your first design',
-            style: StylesWear.style(
-              fontSize: 20.sp,
-              fontWeight: FontWeight.w400,
-              color: ColorsWear.pink,
-            ),
-          ),
+          Image.asset("assets/images/logo.png", height: 150.h, width: 150.w),
+          SizedBox(height: 25.h),
+          Text('Create your first design',
+              style: StylesWear.style(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w400,
+                  color: ColorsWear.pink)),
         ],
       ),
     );
   }
 
-  Widget buildShoeDisplay(BuildContext context, ShoeHiveModel shoe) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Image.asset(
-          shoe.imagePath,
-          height: 120.h,
-          width: 100.w,
-        ),
-        SizedBox(height: 8.h),
-        FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(
-            shoe.title,
-            maxLines: 1,
-            style: TextStyle(
-              fontSize: 12.sp,
-              color: ColorsWear.black,
-            ),
-          ),
-        ),
-      ],
+  Widget buildShoesList(BuildContext context, List<ShoeHiveModel> shoes) {
+    return ListView.builder(
+      itemCount: shoes.length - 1,
+      itemBuilder: (context, index) {
+        return ListTile(
+          leading: Image.asset(shoes[index].imagePath,
+              width: 56.w, height: 56.h), // Adjust the size as needed
+          title: Text(shoes[index].title, style: TextStyle(fontSize: 16.sp)),
+          subtitle: Text('Size: ${shoes[index].shoeSize}'),
+          onTap: () {
+            // Handle the tap if needed
+          },
+        );
+      },
     );
   }
 }

@@ -130,16 +130,15 @@ class _ShoesTypeState extends State<ShoesType> {
                   bool isSelected = selectedShoeIndex == index;
                   return GestureDetector(
                     onTap: () {
-                      setState(() {
-                        selectedShoeIndex = index;
-                        _shoeNameController.text = shoes[index]["name"]!;
-                      });
-
+                      setState(
+                        () {
+                          selectedShoeIndex = index;
+                          _shoeNameController.text = shoes[index]["name"]!;
+                        },
+                      );
                       var box = Hive.box<ShoeHiveModel>('shoes');
-                      var shoeId = DateTime.now().millisecondsSinceEpoch;
                       var shoe = ShoeHiveModel(
-                        // TODO
-                        id: shoeId,
+                        id: 0,
                         title: shoes[index]["name"]!,
                         imagePath: shoes[index]["image"]!,
                         material: '',
@@ -149,7 +148,7 @@ class _ShoesTypeState extends State<ShoesType> {
                         additionalInserts: [],
                         primaryColors: [],
                       );
-                      box.put(shoe.id.toString(), shoe);
+                      box.put('currentShoe', shoe);
                     },
                     child: Container(
                       padding: EdgeInsets.all(5.sp),

@@ -17,7 +17,7 @@ class ShoesMaterial extends StatefulWidget {
 class _ShoesMaterialState extends State<ShoesMaterial> {
   String? selectedMaterial;
 
-  final toe = [
+  final materials = [
     'Suede',
     'Artificial leather',
     'Genuine Leather',
@@ -46,20 +46,19 @@ class _ShoesMaterialState extends State<ShoesMaterial> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: toe.length,
+                itemCount: materials.length,
                 itemBuilder: (context, index) {
                   return MaterialCard(
-                    text: toe[index],
-                    isSelected: selectedMaterial == toe[index],
-                    // Внутри onTap() для MaterialCard
+                    text: materials[index],
+                    isSelected: selectedMaterial == materials[index],
                     onTap: () {
                       setState(() {
-                        selectedMaterial = toe[index];
+                        selectedMaterial = materials[index];
                       });
 
                       var box = Hive.box<ShoeHiveModel>('shoes');
                       var shoe = box.get('currentShoe') as ShoeHiveModel;
-                      shoe.material = toe[index];
+                      shoe.material = materials[index];
                       box.put('currentShoe', shoe);
                     },
                   );

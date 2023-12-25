@@ -198,6 +198,24 @@ class ShoesResult extends StatelessWidget {
                     text: "Save",
                     color: ColorsWear.pink,
                     press: () {
+                      var currentShoe = box.get('currentShoe') as ShoeHiveModel;
+
+                      // ? Новый экземляр с юник ключом
+                      var newShoe = ShoeHiveModel(
+                        id: DateTime.now().millisecondsSinceEpoch,
+                        title: currentShoe.title,
+                        imagePath: currentShoe.imagePath,
+                        material: currentShoe.material,
+                        shoeSize: currentShoe.shoeSize,
+                        heelHeight: currentShoe.heelHeight,
+                        toeShoes: currentShoe.toeShoes,
+                        additionalInserts: currentShoe.additionalInserts,
+                        primaryColors: currentShoe.primaryColors,
+                      );
+
+                      String uniqueKey = 'shoe_${newShoe.id}';
+
+                      box.put(uniqueKey, newShoe);
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
