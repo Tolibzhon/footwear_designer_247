@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/doc_wear.dart';
 import 'package:footwear_designer_247/designer/splash_screen.dart';
+import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Apphud.start(apiKey: DocWear.apphudApiKey);
+  await Hive.initFlutter();
+  Hive.registerAdapter(ShoeHiveModelAdapter());
   runApp(const WearApp());
 }
 
