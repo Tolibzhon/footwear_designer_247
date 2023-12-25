@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/primary_colors.dart';
+import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/screens/primary_colors.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';

@@ -33,10 +33,11 @@ class ExamplasScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: listExamplesContent.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
-                    mainAxisExtent: 184),
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 20,
+                  crossAxisSpacing: 20,
+                  mainAxisExtent: 184,
+                ),
                 itemBuilder: (context, index) {
                   return MotionWear(
                       onPressed: () {

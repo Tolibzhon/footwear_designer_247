@@ -1,32 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/shoes_size.dart';
+import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/screens/additional_inserts.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class ShoesMaterial extends StatefulWidget {
-  const ShoesMaterial({super.key});
+class ShoesToe extends StatefulWidget {
+  const ShoesToe({super.key});
 
   @override
-  State<ShoesMaterial> createState() => _ShoesMaterialState();
+  State<ShoesToe> createState() => _ShoesToeState();
 }
 
-class _ShoesMaterialState extends State<ShoesMaterial> {
+class _ShoesToeState extends State<ShoesToe> {
   String? selectedMaterial;
 
-  final materials = [
-    'Suede',
-    'Artificial leather',
-    'Genuine Leather',
-    'Combination skin',
-    'Leather substitute (leatherette)',
-    'Felt',
-    'Nubuck artificial',
-    'Natural nubuck',
-    'Rubber',
+  final toe = [
+    "Budapester",
+    "Classic round toe shoe",
+    "Almond shaped shoe toe",
+    "Pointed nose",
+    "Soft square",
   ];
 
   @override
@@ -37,7 +33,7 @@ class _ShoesMaterialState extends State<ShoesMaterial> {
         child: Column(
           children: [
             Text(
-              "Select material of manufacture",
+              "Select the toe of the shoe",
               style: TextStyle(
                 color: ColorsWear.black,
                 fontSize: 20.sp,
@@ -46,39 +42,46 @@ class _ShoesMaterialState extends State<ShoesMaterial> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: materials.length,
+                itemCount: toe.length,
                 itemBuilder: (context, index) {
                   return MaterialCard(
-                    text: materials[index],
-                    isSelected: selectedMaterial == materials[index],
+                    text: toe[index],
+                    isSelected: selectedMaterial == toe[index],
+                    // Внутри onTap() для MaterialCard
                     onTap: () {
                       setState(() {
-                        selectedMaterial = materials[index];
+                        selectedMaterial = toe[index];
                       });
 
                       var box = Hive.box<ShoeHiveModel>('shoes');
                       var shoe = box.get('currentShoe') as ShoeHiveModel;
-                      shoe.material = materials[index];
+                      shoe.toeShoes = toe[index];
                       box.put('currentShoe', shoe);
                     },
                   );
                 },
               ),
             ),
-            DefaultButton(
-              text: "Next",
-              color: selectedMaterial != null
-                  ? ColorsWear.pink
-                  : ColorsWear.whiteGrey,
-              press: selectedMaterial != null
-                  ? () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const ShoesSize(),
-                        ),
-                      );
-                    }
-                  : null,
+            Padding(
+              padding: EdgeInsets.all(24.sp),
+              child: SizedBox(
+                width: 300.w,
+                child: DefaultButton(
+                  text: "Next",
+                  color: selectedMaterial != null
+                      ? ColorsWear.pink
+                      : ColorsWear.whiteGrey,
+                  press: selectedMaterial != null
+                      ? () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AdditionalInserts(),
+                            ),
+                          );
+                        }
+                      : null,
+                ),
+              ),
             ),
           ],
         ),
@@ -110,12 +113,19 @@ class MaterialCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? ColorsWear.pink : ColorsWear.whiteGrey,
           borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              spreadRadius: 2,
+              blurRadius: 5,
+            ),
+          ],
         ),
         child: Text(
           text,
           style: TextStyle(
             color: isSelected ? ColorsWear.white : ColorsWear.black,
-            fontWeight: FontWeight.w600,
+            fontWeight: FontWeight.w500,
           ),
         ),
       ),

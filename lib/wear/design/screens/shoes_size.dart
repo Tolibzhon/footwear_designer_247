@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/shoes_toe.dart';
+import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/screens/shoes_toe.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -59,18 +59,18 @@ class _ShoesSizeState extends State<ShoesSize> {
                     selected: _selectedSize == 35 + index,
                     backgroundColor: ColorsWear.whiteGrey,
                     selectedColor: ColorsWear.pink,
-                    // Пример для SizeSelection
                     onSelected: (bool selected) {
                       setState(() {
                         _selectedSize = selected ? 35 + index : null;
                       });
 
-                      var box = Hive.box<ShoeHiveModel>('shoes');
-                      var shoe = box.get('currentShoe') as ShoeHiveModel;
-                      shoe.shoeSize = _selectedSize!;
-                      box.put('currentShoe', shoe);
+                      if (_selectedSize != null) {
+                        var box = Hive.box<ShoeHiveModel>('shoes');
+                        var shoe = box.get('currentShoe') as ShoeHiveModel;
+                        shoe.shoeSize = _selectedSize!;
+                        box.put('currentShoe', shoe);
+                      }
                     },
-
                     labelStyle: TextStyle(
                       color: _selectedSize == 35 + index
                           ? Colors.white
@@ -118,15 +118,16 @@ class _ShoesSizeState extends State<ShoesSize> {
                     selected: _selectedHeelHeight == 2 + index,
                     // Пример для SizeSelection
                     onSelected: (bool selected) {
-                      setState(
-                        () {
-                          _selectedHeelHeight = selected ? 2 + index : null;
-                        },
-                      );
-                      var box = Hive.box<ShoeHiveModel>('shoes');
-                      var shoe = box.get('currentShoe') as ShoeHiveModel;
-                      shoe.heelHeight = _selectedHeelHeight!;
-                      box.put('currentShoe', shoe);
+                      setState(() {
+                        _selectedHeelHeight = selected ? 2 + index : null;
+                      });
+
+                      if (_selectedHeelHeight != null) {
+                        var box = Hive.box<ShoeHiveModel>('shoes');
+                        var shoe = box.get('currentShoe') as ShoeHiveModel;
+                        shoe.heelHeight = _selectedHeelHeight!;
+                        box.put('currentShoe', shoe);
+                      }
                     },
 
                     labelStyle: TextStyle(

@@ -26,13 +26,14 @@ class ShoeHiveModelAdapter extends TypeAdapter<ShoeHiveModel> {
       toeShoes: fields[6] as String,
       additionalInserts: (fields[7] as List).cast<String>(),
       primaryColors: (fields[8] as List).cast<int>(),
+      liked: fields[9] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, ShoeHiveModel obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -50,7 +51,9 @@ class ShoeHiveModelAdapter extends TypeAdapter<ShoeHiveModel> {
       ..writeByte(7)
       ..write(obj.additionalInserts)
       ..writeByte(8)
-      ..write(obj.primaryColors);
+      ..write(obj.primaryColors)
+      ..writeByte(9)
+      ..write(obj.liked);
   }
 
   @override

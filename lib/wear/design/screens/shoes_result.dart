@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:footwear_designer_247/designer/bottom_bar.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
 import 'package:footwear_designer_247/wear/design/design_screen.dart';
-import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -211,6 +212,7 @@ class ShoesResult extends StatelessWidget {
                         toeShoes: currentShoe.toeShoes,
                         additionalInserts: currentShoe.additionalInserts,
                         primaryColors: currentShoe.primaryColors,
+                        liked: false,
                       );
 
                       String uniqueKey = 'shoe_${newShoe.id}';
@@ -220,6 +222,7 @@ class ShoesResult extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return Dialog(
+                            backgroundColor: ColorsWear.white,
                             child: Stack(
                               alignment: Alignment.topRight,
                               children: <Widget>[
@@ -246,7 +249,19 @@ class ShoesResult extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.close),
                                   onPressed: () {
-                                    Navigator.of(context).pop();
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DesignScreen(),
+                                      ),
+                                    );
+                                    Navigator.pushAndRemoveUntil(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => const BottomBarWear(),
+                                      ),
+                                      (route) => false,
+                                    );
                                   },
                                 ),
                               ],
@@ -255,7 +270,8 @@ class ShoesResult extends StatelessWidget {
                         },
                       ).then(
                         (_) {
-                          Navigator.of(context).push(
+                          Navigator.push(
+                            context,
                             MaterialPageRoute(
                               builder: (context) => const DesignScreen(),
                             ),

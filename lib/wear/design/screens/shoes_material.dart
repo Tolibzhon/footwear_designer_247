@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/additional_inserts.dart';
+import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/screens/shoes_size.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-class ShoesToe extends StatefulWidget {
-  const ShoesToe({super.key});
+class ShoesMaterial extends StatefulWidget {
+  const ShoesMaterial({super.key});
 
   @override
-  State<ShoesToe> createState() => _ShoesToeState();
+  State<ShoesMaterial> createState() => _ShoesMaterialState();
 }
 
-class _ShoesToeState extends State<ShoesToe> {
+class _ShoesMaterialState extends State<ShoesMaterial> {
   String? selectedMaterial;
 
-  final toe = [
-    "Budapester",
-    "Classic round toe shoe",
-    "Almond shaped shoe toe",
-    "Pointed nose",
-    "Soft square",
+  final materials = [
+    'Suede',
+    'Artificial leather',
+    'Genuine Leather',
+    'Combination skin',
+    'Leather substitute (leatherette)',
+    'Felt',
+    'Nubuck artificial',
+    'Natural nubuck',
+    'Rubber',
   ];
 
   @override
@@ -32,31 +36,37 @@ class _ShoesToeState extends State<ShoesToe> {
       body: SafeArea(
         child: Column(
           children: [
-            const Text("Select the toe of the shoe"),
+            Text(
+              "Select material of manufacture",
+              style: TextStyle(
+                color: ColorsWear.black,
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             Expanded(
               child: ListView.builder(
-                itemCount: toe.length,
+                itemCount: materials.length,
                 itemBuilder: (context, index) {
                   return MaterialCard(
-                    text: toe[index],
-                    isSelected: selectedMaterial == toe[index],
-                    // Внутри onTap() для MaterialCard
+                    text: materials[index],
+                    isSelected: selectedMaterial == materials[index],
                     onTap: () {
                       setState(() {
-                        selectedMaterial = toe[index];
+                        selectedMaterial = materials[index];
                       });
 
                       var box = Hive.box<ShoeHiveModel>('shoes');
                       var shoe = box.get('currentShoe') as ShoeHiveModel;
-                      shoe.toeShoes = toe[index];
+                      shoe.material = materials[index];
                       box.put('currentShoe', shoe);
                     },
                   );
                 },
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+            SizedBox(
+              width: 200.w,
               child: DefaultButton(
                 text: "Next",
                 color: selectedMaterial != null
@@ -66,7 +76,7 @@ class _ShoesToeState extends State<ShoesToe> {
                     ? () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const AdditionalInserts(),
+                            builder: (context) => const ShoesSize(),
                           ),
                         );
                       }
@@ -103,13 +113,6 @@ class MaterialCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? ColorsWear.pink : ColorsWear.whiteGrey,
           borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.2),
-              spreadRadius: 2,
-              blurRadius: 5,
-            ),
-          ],
         ),
         child: Text(
           text,

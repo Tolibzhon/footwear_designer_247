@@ -21,6 +21,8 @@ class ShoeHiveModel extends HiveObject {
   List<String> additionalInserts;
   @HiveField(8)
   List<int> primaryColors;
+  @HiveField(9)
+  bool liked;
 
   ShoeHiveModel({
     required this.id,
@@ -32,5 +34,6 @@ class ShoeHiveModel extends HiveObject {
     required this.toeShoes,
     required this.additionalInserts,
     required this.primaryColors,
+    this.liked = false,
   });
 }

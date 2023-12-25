@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
-import 'package:footwear_designer_247/wear/design/logic/models/shoe_hive_model.dart';
-import 'package:footwear_designer_247/wear/design/shoe_design/shoes_material.dart';
+import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
+import 'package:footwear_designer_247/wear/design/screens/shoes_material.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 import 'package:footwear_designer_247/wear/design/widgets/default_button.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -130,16 +132,19 @@ class _ShoesTypeState extends State<ShoesType> {
                   bool isSelected = selectedShoeIndex == index;
                   return GestureDetector(
                     onTap: () {
+                      // Можно варировать
+                      log("Current Text: ${_shoeNameController.text}");
                       setState(
                         () {
                           selectedShoeIndex = index;
-                          _shoeNameController.text = shoes[index]["name"]!;
                         },
                       );
                       var box = Hive.box<ShoeHiveModel>('shoes');
                       var shoe = ShoeHiveModel(
                         id: 0,
-                        title: shoes[index]["name"]!,
+                        title: _shoeNameController.text.isNotEmpty
+                            ? _shoeNameController.text
+                            : shoes[index]["name"]!,
                         imagePath: shoes[index]["image"]!,
                         material: '',
                         shoeSize: 0,
