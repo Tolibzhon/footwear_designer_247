@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:footwear_designer_247/designer/bottom_bar.dart';
 import 'package:footwear_designer_247/designer/buy_footwear_functions.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
 import 'package:footwear_designer_247/designer/doc_wear.dart';
@@ -89,43 +90,57 @@ class _ProFootwearState extends State<ProFootwear> {
                     ],
                   ),
                   SizedBox(height: 30.h),
-                  MotionWear(
-                    onPressed: () async {
-                      if (currentPageIndex == 2) {
-                        Navigator.pushAndRemoveUntil<void>(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const Premium(),
+                  FutureBuilder(
+                      future: buyFootwearFuncGet(),
+                      builder: (context, snapshot) {
+                        return MotionWear(
+                          onPressed: () async {
+                            if (currentPageIndex == 2) {
+                              if (snapshot.hasData && !snapshot.data!) {
+                                Navigator.pushAndRemoveUntil<void>(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        const Premium(),
+                                  ),
+                                  ModalRoute.withName('/'),
+                                );
+                              } else {
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const BottomBarWear(),
+                                  ),
+                                  (protected) => false,
+                                );
+                              }
+                            } else {
+                              controller.nextPage(
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.ease,
+                              );
+                            }
+                          },
+                          child: Container(
+                            width: 250.w,
+                            padding: EdgeInsets.symmetric(vertical: 13.sp),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: ColorsWear.pink,
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Next',
+                                style: StylesWear.style(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  color: ColorsWear.white,
+                                ),
+                              ),
+                            ),
                           ),
-                          ModalRoute.withName('/'),
                         );
-                      } else {
-                        controller.nextPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.ease,
-                        );
-                      }
-                    },
-                    child: Container(
-                      width: 250.w,
-                      padding: EdgeInsets.symmetric(vertical: 13.sp),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: ColorsWear.pink,
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Next',
-                          style: StylesWear.style(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: ColorsWear.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                      }),
                   SizedBox(height: 30.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 34.sp),

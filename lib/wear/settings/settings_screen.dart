@@ -6,9 +6,20 @@ import 'package:footwear_designer_247/designer/doc_wear.dart';
 import 'package:footwear_designer_247/designer/motion_wear.dart';
 import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/designer/web.dart';
+import 'package:share_plus/share_plus.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
+
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  final String shareLink = 'https://www.example.com';
+  void _shareLink(String link) {
+    Share.share(link, subject: 'Check out this link!');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,37 +72,43 @@ class SettingsScreen extends StatelessWidget {
             SizedBox(height: 25.h),
             SettingsWidget(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (_) => const Wear(
-                //       title: 'Contact us',
-                //       url: DocWear.,
-                //     ),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const Wear(
+                      title: 'Contact us',
+                      url: DocWear.support,
+                    ),
+                  ),
+                );
               },
               image: "assets/images/contuct us.png",
               title: 'Contact us',
             ),
             SizedBox(height: 25.h),
-            SettingsWidget(
-              onTap: () {buyFootwearFuncRestore(context);},
-              image: "assets/images/restore.png",
-              title: 'Restore',
+            FutureBuilder(
+              future: buyFootwearFuncGet(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData && !snapshot.data!) {
+                  return Column(
+                    children: [
+                      SettingsWidget(
+                        onTap: () {
+                          buyFootwearFuncRestore(context);
+                        },
+                        image: "assets/images/restore.png",
+                        title: 'Restore',
+                      ),
+                      SizedBox(height: 25.h),
+                    ],
+                  );
+                }
+                return const SizedBox();
+              },
             ),
-            SizedBox(height: 25.h),
             SettingsWidget(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (_) => const Wear(
-                //       title: 'Privacy policy',
-                //       url: DocWear.termOfUce,
-                //     ),
-                //   ),
-                // );
+                _shareLink(shareLink);
               },
               image: "assets/images/share app.png",
               title: 'Share app',

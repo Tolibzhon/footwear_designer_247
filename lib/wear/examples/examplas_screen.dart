@@ -6,7 +6,6 @@ import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/examples/content/examples_content.dart';
 import 'package:footwear_designer_247/wear/examples/detail_examplas_screen%20copy.dart';
 import 'package:footwear_designer_247/wear/examples/widget/examples_widget.dart';
-import 'package:footwear_designer_247/wear/favorite/favorite_screen.dart';
 
 class ExamplasScreen extends StatelessWidget {
   const ExamplasScreen({super.key});
