@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class Wear extends StatefulWidget {
@@ -34,7 +35,7 @@ class _WearState extends State<Wear> {
         backgroundColor: ColorsWear.pink,
         title: Text(
           widget.title,
-          style: const TextStyle(
+          style: StylesWear.style(
             color: ColorsWear.white,
             fontWeight: FontWeight.w600,
           ),

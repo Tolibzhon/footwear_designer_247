@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/screens/shoes_size.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
@@ -38,7 +39,7 @@ class _ShoesMaterialState extends State<ShoesMaterial> {
           children: [
             Text(
               "Select material of manufacture",
-              style: TextStyle(
+              style: StylesWear.style(
                 color: ColorsWear.black,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w500,
@@ -116,7 +117,7 @@ class MaterialCard extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: TextStyle(
+          style: StylesWear.style(
             color: isSelected ? ColorsWear.white : ColorsWear.black,
             fontWeight: FontWeight.w600,
           ),

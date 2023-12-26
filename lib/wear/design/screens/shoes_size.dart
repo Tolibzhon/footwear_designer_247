@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/screens/shoes_toe.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
@@ -31,7 +32,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                 child: Center(
                   child: Text(
                     'Select shoe size',
-                    style: TextStyle(
+                    style: StylesWear.style(
                       color: ColorsWear.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
@@ -71,7 +72,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                         box.put('currentShoe', shoe);
                       }
                     },
-                    labelStyle: TextStyle(
+                    labelStyle: StylesWear.style(
                       color: _selectedSize == 35 + index
                           ? Colors.white
                           : Colors.black,
@@ -87,7 +88,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                 child: Center(
                   child: Text(
                     'Select heel height',
-                    style: TextStyle(
+                    style: StylesWear.style(
                       color: ColorsWear.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w500,
@@ -109,8 +110,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                     showCheckmark: false,
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(color: Colors.transparent),
-                      borderRadius:
-                          BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     backgroundColor: ColorsWear.whiteGrey,
                     selectedColor: ColorsWear.pink,
@@ -130,7 +130,7 @@ class _ShoesSizeState extends State<ShoesSize> {
                       }
                     },
 
-                    labelStyle: TextStyle(
+                    labelStyle: StylesWear.style(
                       color: _selectedHeelHeight == 2 + index
                           ? Colors.white
                           : Colors.black,

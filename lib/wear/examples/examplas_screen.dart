@@ -4,7 +4,7 @@ import 'package:footwear_designer_247/designer/colors.dart';
 import 'package:footwear_designer_247/designer/motion_wear.dart';
 import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/examples/content/examples_content.dart';
-import 'package:footwear_designer_247/wear/examples/detail_examplas_screen%20copy.dart';
+import 'package:footwear_designer_247/wear/examples/detail_examplas_screen.dart';
 import 'package:footwear_designer_247/wear/examples/widget/examples_widget.dart';
 
 class ExamplasScreen extends StatelessWidget {

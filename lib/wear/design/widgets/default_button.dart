@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 
 class DefaultButton extends StatelessWidget {
   final String text;
@@ -29,7 +30,7 @@ class DefaultButton extends StatelessWidget {
         child: Text(
           text,
           maxLines: 1,
-          style: TextStyle(
+          style: StylesWear.style(
             fontSize: 16.sp,
             color: Colors.white,
           ),

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/screens/shoes_material.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
@@ -78,7 +79,7 @@ class _ShoesTypeState extends State<ShoesType> {
                 children: [
                   Text(
                     "Write the name of the shoes",
-                    style: TextStyle(
+                    style: StylesWear.style(
                       fontSize: 18.sp,
                       color: ColorsWear.black,
                     ),
@@ -107,7 +108,7 @@ class _ShoesTypeState extends State<ShoesType> {
                   Center(
                     child: Text(
                       "Select shoes type",
-                      style: TextStyle(
+                      style: StylesWear.style(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
                         color: ColorsWear.black,
@@ -173,7 +174,7 @@ class _ShoesTypeState extends State<ShoesType> {
                                 child: Text(
                                   shoes[index]["name"]!,
                                   maxLines: 1,
-                                  style: TextStyle(
+                                  style: StylesWear.style(
                                     fontSize: 12.sp,
                                     color: ColorsWear.black,
                                   ),

@@ -53,6 +53,17 @@ class DetailExamplasScreen extends StatelessWidget {
                   height: 250.h,
                 ),
               ),
+              SizedBox(height: 15.h),
+              Center(
+                child: Text(
+                  example.title,
+                  style: StylesWear.style(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: ColorsWear.black,
+                  ),
+                ),
+              ),
               SizedBox(height: 69.h),
               Text(
                 'Material of manufacture',
@@ -193,9 +204,7 @@ class DetailExamplasScreen extends StatelessWidget {
                       (colorCode) => Container(
                         margin: const EdgeInsets.all(4.0),
                         decoration: BoxDecoration(
-                           color: Color(colorCode),
-                           shape: BoxShape.circle
-                        ),
+                            color: Color(colorCode), shape: BoxShape.circle),
                         width: 30.w,
                         height: 30.h,
                       ),

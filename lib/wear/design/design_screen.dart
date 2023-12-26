@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:footwear_designer_247/designer/buy_footwear_functions.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/premium.dart';
+import 'package:footwear_designer_247/designer/saved_data.dart';
 import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/screens/pump_hive_screen.dart';
@@ -17,6 +20,20 @@ class DesignScreen extends StatefulWidget {
 }
 
 class _DesignScreenState extends State<DesignScreen> {
+  int prem = 0;
+  @override
+  void initState() {
+    saveData();
+    super.initState();
+  }
+
+  Future<void> saveData() async {
+    int premSavedData = await SavedData.getPrem();
+    setState(() {
+      prem = premSavedData;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var box = Hive.box<ShoeHiveModel>('shoes');
@@ -39,29 +56,48 @@ class _DesignScreenState extends State<DesignScreen> {
                       color: ColorsWear.black,
                     ),
                   ),
-                  ClipOval(
-                    child: Material(
-                      color: ColorsWear.pink,
-                      child: InkWell(
-                        splashColor: ColorsWear.white,
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const ShoesType(),
+                  FutureBuilder(
+                      future: buyFootwearFuncGet(),
+                      builder: (context, snapshot) {
+                        bool ppp = snapshot.data ?? false;
+                        return ClipOval(
+                          child: Material(
+                            color: ColorsWear.pink,
+                            child: InkWell(
+                              splashColor: ColorsWear.white,
+                              onTap: () async {
+                                prem = prem + 1;
+                                await SavedData.setPrem(prem);
+                                if (prem > 3 && !ppp) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Premium(
+                                        canPop: true,
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  await Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const ShoesType(),
+                                    ),
+                                  );
+                                  setState(() {});
+                                }
+                              },
+                              child: SizedBox(
+                                height: 35.h,
+                                width: 35.w,
+                                child: const Icon(
+                                  Icons.add,
+                                  color: ColorsWear.white,
+                                ),
+                              ),
                             ),
-                          );
-                        },
-                        child: SizedBox(
-                          height: 35.h,
-                          width: 35.w,
-                          child: const Icon(
-                            Icons.add,
-                            color: ColorsWear.white,
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
+                        );
+                      }),
                 ],
               ),
               SizedBox(height: 30.h),
@@ -148,7 +184,7 @@ class _DesignScreenState extends State<DesignScreen> {
               Center(
                 child: Text(
                   shoes[index].title,
-                  style: TextStyle(
+                  style: StylesWear.style(
                     fontSize: 16.sp,
                   ),
                 ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/screens/shoes_result.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
@@ -97,7 +98,7 @@ class _PrimaryColorsState extends State<PrimaryColors> {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               'Select primary colors',
-              style: TextStyle(
+              style: StylesWear.style(
                 color: ColorsWear.black,
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w500,

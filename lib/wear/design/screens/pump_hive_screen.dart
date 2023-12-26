@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
-import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
 
 class PumpHiveScreen extends StatelessWidget {
   final ShoeHiveModel shoe;
@@ -15,7 +15,6 @@ class PumpHiveScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildShoeAppBar("Shoe design"),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -23,14 +22,36 @@ class PumpHiveScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_ios,
+                            size: 25.h, color: ColorsWear.black)),
+                    Text(
+                      'Pump',
+                      style: StylesWear.style(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        color: ColorsWear.black,
+                      ),
+                    ),
+                    SizedBox(width: 25.h),
+                  ],
+                ),
+                SizedBox(height: 30.h),
                 Text(
-                  "Shoes type",
-                  style: TextStyle(
+                  'Shoes type',
+                  style: StylesWear.style(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                     color: ColorsWear.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 10.h),
                 Center(
                   child: Image.asset(
                     shoe.imagePath,
@@ -38,10 +59,11 @@ class PumpHiveScreen extends StatelessWidget {
                     width: 250.w,
                   ),
                 ),
+                SizedBox(height: 69.h),
                 Center(
                   child: Text(
                     shoe.title,
-                    style: TextStyle(
+                    style: StylesWear.style(
                       color: ColorsWear.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w400,
@@ -50,89 +72,91 @@ class PumpHiveScreen extends StatelessWidget {
                 ),
                 Text(
                   "Material of manufacture",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 15.h),
                 Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 15,
-                    horizontal: 30,
-                  ),
-                  margin:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-                  alignment: Alignment.centerLeft,
+                  width: MediaQuery.of(context).size.width,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 25.sp, vertical: 15.sp),
                   decoration: BoxDecoration(
-                    color: ColorsWear.whiteGrey,
                     borderRadius: BorderRadius.circular(15),
+                    color: ColorsWear.greyLight.withOpacity(0.3),
                   ),
                   child: Text(
                     shoe.material,
-                    style: const TextStyle(
+                    style: StylesWear.style(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                       color: ColorsWear.black,
                     ),
                   ),
                 ),
+                SizedBox(height: 30.h),
                 Text(
                   "Shoe size",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
                 Container(
-                  height: 50.h,
-                  width: 100.w,
-                  alignment: Alignment.centerLeft,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 30.sp, vertical: 15.sp),
                   decoration: BoxDecoration(
-                    color: ColorsWear.whiteGrey,
                     borderRadius: BorderRadius.circular(15),
+                    color: ColorsWear.greyLight.withOpacity(0.3),
                   ),
-                  child: Center(
-                    child: Text(
-                      "${shoe.shoeSize}",
-                      style: const TextStyle(
-                        color: ColorsWear.black,
-                      ),
+                  child: Text(
+                    "${shoe.shoeSize}",
+                    style: StylesWear.style(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: ColorsWear.black,
                     ),
                   ),
                 ),
+                SizedBox(height: 30.h),
                 Text(
-                  "Heel height",
-                  style: TextStyle(
+                  'Heel height',
+                  style: StylesWear.style(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                     color: ColorsWear.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 15.h),
                 Container(
-                  height: 50.h,
-                  width: 100.w,
-                  alignment: Alignment.centerLeft,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 30.sp, vertical: 15.sp),
                   decoration: BoxDecoration(
-                    color: ColorsWear.whiteGrey,
                     borderRadius: BorderRadius.circular(15),
+                    color: ColorsWear.greyLight.withOpacity(0.3),
                   ),
-                  child: Center(
-                    child: Text(
-                      "${shoe.heelHeight} cm",
-                      style: const TextStyle(
-                        color: ColorsWear.black,
-                      ),
+                  child: Text(
+                    "${shoe.heelHeight} cm",
+                    style: StylesWear.style(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
+                      color: ColorsWear.black,
                     ),
                   ),
                 ),
+                SizedBox(height: 30.h),
                 Text(
-                  "Toe of the shoes",
-                  style: TextStyle(
+                  'Toe of the shoes',
+                  style: StylesWear.style(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                     color: ColorsWear.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 15.h),
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
@@ -145,19 +169,23 @@ class PumpHiveScreen extends StatelessWidget {
                   ),
                   child: Text(
                     shoe.toeShoes,
-                    style: const TextStyle(
+                    style: StylesWear.style(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w400,
                       color: ColorsWear.black,
                     ),
                   ),
                 ),
+                SizedBox(height: 30.h),
                 Text(
                   "Additional shoe inserts",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
+                SizedBox(height: 15.h),
                 Row(
                   children: [
                     Image.asset(
@@ -172,14 +200,16 @@ class PumpHiveScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: 30.h),
                 Text(
-                  "Primary colors",
-                  style: TextStyle(
+                  'Primary colors',
+                  style: StylesWear.style(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
                     color: ColorsWear.black,
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 15.h),
                 Row(
                   children: shoe.primaryColors.map((colorValue) {
                     Color color = Color(colorValue);

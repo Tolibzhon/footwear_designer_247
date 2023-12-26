@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/screens/primary_colors.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
@@ -62,7 +63,7 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
                   Center(
                     child: Text(
                       "Select shoes type",
-                      style: TextStyle(
+                      style: StylesWear.style(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.w600,
                         color: ColorsWear.black,
@@ -78,7 +79,7 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
               padding: EdgeInsets.all(24.sp),
               child: Text(
                 "Clasp",
-                style: TextStyle(
+                style: StylesWear.style(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                   color: ColorsWear.black,
@@ -151,7 +152,7 @@ class _AdditionalInsertsState extends State<AdditionalInserts> {
               padding: EdgeInsets.all(24.sp),
               child: Text(
                 "Additional inserts",
-                style: TextStyle(
+                style: StylesWear.style(
                   fontSize: 20.sp,
                   fontWeight: FontWeight.w600,
                   color: ColorsWear.black,

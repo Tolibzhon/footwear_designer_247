@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/bottom_bar.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:footwear_designer_247/wear/design/design_screen.dart';
 import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:footwear_designer_247/wear/design/widgets/custom_appbar.dart';
@@ -27,7 +28,7 @@ class ShoesResult extends StatelessWidget {
               children: [
                 Text(
                   "Shoes type",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -43,7 +44,7 @@ class ShoesResult extends StatelessWidget {
                 Center(
                   child: Text(
                     shoe.title,
-                    style: TextStyle(
+                    style: StylesWear.style(
                       color: ColorsWear.black,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w400,
@@ -52,7 +53,7 @@ class ShoesResult extends StatelessWidget {
                 ),
                 Text(
                   "Material of manufacture",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -72,14 +73,14 @@ class ShoesResult extends StatelessWidget {
                   ),
                   child: Text(
                     shoe.material,
-                    style: const TextStyle(
+                    style: StylesWear.style(
                       color: ColorsWear.black,
                     ),
                   ),
                 ),
                 Text(
                   "Shoe size",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -96,7 +97,7 @@ class ShoesResult extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "${shoe.shoeSize}",
-                      style: const TextStyle(
+                      style: StylesWear.style(
                         color: ColorsWear.black,
                       ),
                     ),
@@ -104,7 +105,7 @@ class ShoesResult extends StatelessWidget {
                 ),
                 Text(
                   "Heel height",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -121,7 +122,7 @@ class ShoesResult extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "${shoe.heelHeight} cm",
-                      style: const TextStyle(
+                      style: StylesWear.style(
                         color: ColorsWear.black,
                       ),
                     ),
@@ -129,7 +130,7 @@ class ShoesResult extends StatelessWidget {
                 ),
                 Text(
                   "Toe of the shoes",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -147,14 +148,14 @@ class ShoesResult extends StatelessWidget {
                   ),
                   child: Text(
                     shoe.toeShoes,
-                    style: const TextStyle(
+                    style: StylesWear.style(
                       color: ColorsWear.black,
                     ),
                   ),
                 ),
                 Text(
                   "Additional shoe inserts",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -176,7 +177,7 @@ class ShoesResult extends StatelessWidget {
                 ),
                 Text(
                   "Primary colors",
-                  style: TextStyle(
+                  style: StylesWear.style(
                     color: ColorsWear.black,
                     fontSize: 20.sp,
                     fontWeight: FontWeight.w500,
@@ -238,7 +239,7 @@ class ShoesResult extends StatelessWidget {
                                       ),
                                       Text(
                                         'Your shoes design is saved',
-                                        style: TextStyle(
+                                        style: StylesWear.style(
                                           fontSize: 20.sp,
                                           color: ColorsWear.pink,
                                         ),
