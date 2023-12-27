@@ -51,7 +51,7 @@ class _ShoesSizeState extends State<ShoesSize> {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return ChoiceChip(
-                    // showCheckmark: false,
+                    showCheckmark: false,
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(color: Colors.transparent),
                       borderRadius: BorderRadius.circular(10),
@@ -107,7 +107,7 @@ class _ShoesSizeState extends State<ShoesSize> {
               delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
                   return ChoiceChip(
-                    // showCheckmark: false,
+                    showCheckmark: false,
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(color: Colors.transparent),
                       borderRadius: BorderRadius.circular(10),
