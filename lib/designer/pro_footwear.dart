@@ -50,7 +50,7 @@ class _ProFootwearState extends State<ProFootwear> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: ColorsWear.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(35),
