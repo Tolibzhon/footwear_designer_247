@@ -257,7 +257,7 @@ class WelcomeData extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: 10.h),
         FittedBox(
           child: Text(
             subTitle,

@@ -78,7 +78,7 @@ class _PremiumState extends State<Premium> {
                             Text(
                               'PREMIUM',
                               style: StylesWear.style(
-                                fontSize: 32.sp,
+                                fontSize: 32.h,
                                 fontWeight: FontWeight.w700,
                                 color: ColorsWear.black,
                               ),
@@ -102,7 +102,7 @@ class _PremiumState extends State<Premium> {
                                   Text(
                                     'Unlimited design creation',
                                     style: StylesWear.style(
-                                      fontSize: 24.sp,
+                                      fontSize: 24.h,
                                       fontWeight: FontWeight.w700,
                                       color: ColorsWear.black,
                                     ),
@@ -110,7 +110,7 @@ class _PremiumState extends State<Premium> {
                                   Text(
                                     'Create your own shoes designs unlimited',
                                     style: StylesWear.style(
-                                      fontSize: 18.sp,
+                                      fontSize: 18.h,
                                       fontWeight: FontWeight.w400,
                                       color: ColorsWear.black,
                                     ),
@@ -135,7 +135,7 @@ class _PremiumState extends State<Premium> {
                                   Text(
                                     'No Ads',
                                     style: StylesWear.style(
-                                      fontSize: 24.sp,
+                                      fontSize: 24.h,
                                       fontWeight: FontWeight.w700,
                                       color: ColorsWear.black,
                                     ),
@@ -143,7 +143,7 @@ class _PremiumState extends State<Premium> {
                                   Text(
                                     'Remove advertisements',
                                     style: StylesWear.style(
-                                      fontSize: 18.sp,
+                                      fontSize: 18.h,
                                       fontWeight: FontWeight.w400,
                                       color: ColorsWear.black,
                                     ),

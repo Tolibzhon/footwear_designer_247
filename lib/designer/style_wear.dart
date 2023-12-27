@@ -13,7 +13,7 @@ class StylesWear {
         decoration: textDecoration,
         fontSize: fontSize,
         color: color,
-        fontFamily: 'Gilroy',
+        fontFamily: 'Inter',
         wordSpacing: wordSpacing,
       );
 }
