@@ -227,7 +227,7 @@ class DotIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: isActive ? 10 : 10,
-      width: isActive ? 10 : 10,
+      width: isActive ? 40 : 10,
       decoration: BoxDecoration(
           color: isActive ? ColorsWear.pink : ColorsWear.grey,
           borderRadius: BorderRadius.circular(12)),
@@ -291,7 +291,7 @@ class ProContent {
     ProModel(
       image: "assets/images/onbording1.png",
       title: 'Welcome to\nFootwear Designer',
-      subTitle: 'App for creating your own\nshoe designs',
+      subTitle: 'Find out what type of shoes\nsuits you',
     ),
     ProModel(
       image: "assets/images/onbording2.png",
