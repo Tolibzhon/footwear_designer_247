@@ -29,13 +29,13 @@ class _FeetCalculatorScreenState extends State<FeetCalculatorScreen> {
   }
 
   Map<String, String> calculateShoeSizes(double footLength) {
-    double canadaSize = footLength / 2.54 + 2;
-    double usaSize = footLength / 2.54 + 1;
-    double europeSize = footLength / 2.54 + 33;
-    double russiaSize = footLength / 2.54 + 31;
-    double ukSize = footLength / 2.54 - 1;
-    double asiaSize = footLength / 2.54 + 33;
-    double brazilSize = footLength / 2.54 + 32;
+    double canadaSize = (footLength / 2.54 + 2)/3.3;
+    double usaSize = (footLength / 2.54 + 1)/3.3;
+    double europeSize = (footLength / 2.54 + 33)/3.3;
+    double russiaSize = (footLength / 2.54 + 31)/3.3;
+    double ukSize = (footLength / 2.54 - 1)/3.3;
+    double asiaSize = (footLength / 2.54 + 33)/3.3;
+    double brazilSize = (footLength / 2.54 + 32)/3.3;
 
     return {
       'Canada':
@@ -205,6 +205,7 @@ class _FeetCalculatorScreenState extends State<FeetCalculatorScreen> {
                               footLength =
                                   double.tryParse(controller.text) ?? 0;
                               shoeSizes = calculateShoeSizes(footLength);
+                              dan = false;
                               isLoad = true;
                             });
 
