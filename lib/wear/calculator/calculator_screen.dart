@@ -59,12 +59,18 @@ class _FeetCalculatorScreenState extends State<FeetCalculatorScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                'Feet calculator',
-                style: StylesWear.style(
-                  fontSize: 28.sp,
-                  fontWeight: FontWeight.w700,
-                  color: ColorsWear.black,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24.sp),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Feet calculator',
+                    style: StylesWear.style(
+                      fontSize: 28.sp,
+                      fontWeight: FontWeight.w700,
+                      color: ColorsWear.black,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 20.h),
