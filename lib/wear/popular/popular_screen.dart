@@ -85,8 +85,8 @@ class WidgetPopular extends StatelessWidget {
         children: [
           Image.asset(
             model.image,
-            width: 80,
-            height: 80,
+            width: 80.w,
+            height: 80.h,
             fit: BoxFit.cover,
           ),
           SizedBox(width: 10.w),
@@ -97,17 +97,20 @@ class WidgetPopular extends StatelessWidget {
                 Text(
                   model.title,
                   style: StylesWear.style(
-                      fontSize: 16,
+                      fontSize: 16.h,
                       fontWeight: FontWeight.w700,
                       color: ColorsWear.black),
                 ),
                 SizedBox(height: 4.h),
-                Text(
-                  model.subTitle,
-                  style: StylesWear.style(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: ColorsWear.black),
+                Expanded(
+                  child: Text(
+                    model.subTitle,
+                   overflow: TextOverflow.fade,
+                    style: StylesWear.style(
+                        fontSize: 14.h,
+                        fontWeight: FontWeight.w400,
+                        color: ColorsWear.black),
+                  ),
                 ),
               ],
             ),
