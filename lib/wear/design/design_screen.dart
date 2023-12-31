@@ -160,24 +160,6 @@ class _DesignScreenState extends State<DesignScreen> {
                     width: 160.w,
                     height: 184.h,
                   ),
-                  Positioned(
-                    right: 0,
-                    top: 0,
-                    child: InkWell(
-                      onTap: () async {
-                        setState(() {
-                          shoes[index].liked = !shoes[index].liked;
-                        });
-                        await shoes[index].save();
-                      },
-                      child: Image.asset(
-                        shoes[index].liked
-                            ? "assets/images/liked.png"
-                            : "assets/images/disliked.png",
-                        height: 30.h,
-                      ),
-                    ),
-                  ),
                 ],
               ),
               SizedBox(height: 8.h),

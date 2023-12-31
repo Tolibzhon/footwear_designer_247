@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/bottom_bar.dart';
-import 'package:footwear_designer_247/designer/colors.dart';
 import 'package:footwear_designer_247/designer/pro_footwear.dart';
-import 'package:footwear_designer_247/designer/style_wear.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -29,17 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Image.asset("assets/images/logo.png", width: 210),
-          ),
-          SizedBox(height: 12.h),
-          Text(
-            'Create your first design',
-            style: StylesWear.style(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              color: ColorsWear.pink,
+            child: Image.asset(
+              "assets/images/logo.png",
+              width: 210,
             ),
-          )
+          ),
         ],
       ),
     );
@@ -53,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => ProFootwear(),
+            builder: (context) => const ProFootwear(),
           ),
         );
         prefs.setDouble('shoesapikey', 65783985);
