@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:apphud/apphud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -160,7 +162,8 @@ class _PremiumState extends State<Premium> {
                               cxcxc = true;
                             });
                             final apphudPaywalls = await Apphud.paywalls();
-
+                            print(
+                                apphudPaywalls?.paywalls.first.products?.first);
                             await Apphud.purchase(
                               product: apphudPaywalls
                                   ?.paywalls.first.products?.first,

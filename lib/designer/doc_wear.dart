@@ -1,9 +1,9 @@
 class DocWear {
-  static const String apphudApiKey = 'app_Syk68hpZF7W69zdEPxHPdU26i3H44m';
+  static const String apphudApiKey = 'app_iiwWyUFqTUQAk4GhyZx3dp48AyuJxA';
   static const String privacy =
-      'https://sites.google.com/view/monorate/privacy-policy';
+      'https://docs.google.com/document/d/10k6q-PB-_HB-OASr9-2XiQYdGzotcdhQ54Jqo0gtVcA/edit?usp=sharing';
   static const String terms =
-      'https://sites.google.com/view/monorate/terms-conditions';
+      'https://docs.google.com/document/d/1nlaNMbClWcK5iZanXhfkUTArhy7afqX1cxEo1VyOh_c/edit?usp=sharing';
   static const String support =
-      'https://sites.google.com/view/linhquynhduongthi/support-form';
+      'https://forms.gle/vS6tf5MKTEH1e9H9A';
 }
