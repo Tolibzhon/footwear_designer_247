@@ -248,7 +248,7 @@ class ShoesResult extends StatelessWidget {
                                   ),
                                 ),
                                 IconButton(
-                                  icon: const Icon(Icons.close),
+                                  icon: const Icon(Icons.check),
                                   onPressed: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
@@ -281,7 +281,8 @@ class ShoesResult extends StatelessWidget {
                       );
                     },
                   ),
-                )
+                ),
+                SizedBox(height: 20.h)
               ],
             ),
           ),

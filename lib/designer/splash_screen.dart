@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:footwear_designer_247/designer/colors.dart';
+import 'package:footwear_designer_247/designer/bottom_bar.dart';
 import 'package:footwear_designer_247/designer/pro_footwear.dart';
-import 'package:footwear_designer_247/designer/style_wear.dart';
+import 'package:in_app_review/in_app_review.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    _navigatetohome();
+    _tradeShoesHome();
     super.initState();
   }
 
@@ -26,28 +26,46 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Image.asset("assets/images/logo.png", width: 210),
-          ),
-          SizedBox(height: 12.h),
-          Text(
-            'Create your first design',
-            style: StylesWear.style(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              color: ColorsWear.pink,
+            child: Image.asset(
+              "assets/images/logo.png",
+              width: 210,
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  _navigatetohome() async {
-    await Future.delayed(const Duration(milliseconds: 1499), () {});
+  _tradeShoesHome() async {
+    await Future.delayed(const Duration(milliseconds: 1405), () {});
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => ProFootwear()),
-    );
+    SharedPreferences.getInstance().then((prefs) async {
+      if (!prefs.containsKey('shoesapikey')) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProFootwear(),
+          ),
+        );
+        prefs.setDouble('shoesapikey', 65783985);
+        await Future.delayed(const Duration(seconds: 4));
+        try {
+          final InAppReview inAppReview = InAppReview.instance;
+
+          if (await inAppReview.isAvailable()) {
+            inAppReview.requestReview();
+          }
+        } catch (e) {
+          throw Exception(e);
+        }
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const BottomBarWear(),
+          ),
+        );
+      }
+    });
   }
 }

@@ -66,6 +66,7 @@ class _ShoesMaterialState extends State<ShoesMaterial> {
                 },
               ),
             ),
+            SizedBox(height: 14.h),
             SizedBox(
               width: 200.w,
               child: DefaultButton(
@@ -84,6 +85,7 @@ class _ShoesMaterialState extends State<ShoesMaterial> {
                     : null,
               ),
             ),
+            SizedBox(height: 14.h),
           ],
         ),
       ),

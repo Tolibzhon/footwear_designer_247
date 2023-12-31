@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
 import 'package:footwear_designer_247/wear/advices/advices_screen.dart';
 import 'package:footwear_designer_247/wear/design/design_screen.dart';
-import 'package:footwear_designer_247/wear/examples/examplas_screen.dart';
+// import 'package:footwear_designer_247/wear/examples/examplas_screen.dart';
 import 'package:footwear_designer_247/wear/calculator/calculator_screen.dart';
+import 'package:footwear_designer_247/wear/favorite/favorite_screen.dart';
+import 'package:footwear_designer_247/wear/popular/popular_screen.dart';
 import 'package:footwear_designer_247/wear/settings/settings_screen.dart';
 
 class BottomBarWear extends StatefulWidget {
@@ -19,7 +21,9 @@ class BottomBarWearState extends State<BottomBarWear> {
   final _screens = <Widget>[
     const DesignScreen(),
     const FeetCalculatorScreen(),
-    const ExamplasScreen(),
+
+    const FavoriteScreen(),
+    const PopularScreen(),
     const AdvicesScreen(),
     const SettingsScreen(),
   ];

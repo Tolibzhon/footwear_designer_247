@@ -140,6 +140,7 @@ class _PrimaryColorsState extends State<PrimaryColors> {
               ),
             ),
           ),
+          SizedBox(height: 20.h),
           SizedBox(
             width: 250.w,
             child: DefaultButton(
@@ -154,7 +155,7 @@ class _PrimaryColorsState extends State<PrimaryColors> {
               },
             ),
           ),
-          SizedBox(height: 40.h),
+          SizedBox(height: 20.h),
         ],
       ),
     );

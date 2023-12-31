@@ -50,7 +50,7 @@ class _ProFootwearState extends State<ProFootwear> {
             child: Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: ColorsWear.white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(35),
@@ -227,7 +227,7 @@ class DotIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: isActive ? 10 : 10,
-      width: isActive ? 10 : 10,
+      width: isActive ? 40 : 10,
       decoration: BoxDecoration(
           color: isActive ? ColorsWear.pink : ColorsWear.grey,
           borderRadius: BorderRadius.circular(12)),
@@ -257,7 +257,7 @@ class WelcomeData extends StatelessWidget {
             fontWeight: FontWeight.w700,
           ),
         ),
-        SizedBox(height: 20.h),
+        SizedBox(height: 10.h),
         FittedBox(
           child: Text(
             subTitle,
@@ -291,7 +291,7 @@ class ProContent {
     ProModel(
       image: "assets/images/onbording1.png",
       title: 'Welcome to\nFootwear Designer',
-      subTitle: 'App for creating your own\nshoe designs',
+      subTitle: 'Find out what type of shoes\nsuits you',
     ),
     ProModel(
       image: "assets/images/onbording2.png",
