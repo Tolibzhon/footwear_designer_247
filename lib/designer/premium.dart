@@ -162,8 +162,6 @@ class _PremiumState extends State<Premium> {
                               cxcxc = true;
                             });
                             final apphudPaywalls = await Apphud.paywalls();
-                            print(
-                                apphudPaywalls?.paywalls.first.products?.first);
                             await Apphud.purchase(
                               product: apphudPaywalls
                                   ?.paywalls.first.products?.first,

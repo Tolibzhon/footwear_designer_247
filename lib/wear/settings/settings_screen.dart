@@ -16,7 +16,7 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  final String shareLink = 'https://www.example.com';
+  final String shareLink = 'https://apps.apple.com/us/app/footwear-designer/id6474973532';
   void _shareLink(String link) {
     Share.share(link, subject: 'Check out this link!');
   }

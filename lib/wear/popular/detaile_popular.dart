@@ -48,6 +48,7 @@ class DetailePopular extends StatelessWidget {
                 ),
               ],
             ),
+          SizedBox(height: 20.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.sp),
               child: Text(

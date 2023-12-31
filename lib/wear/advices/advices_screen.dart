@@ -187,6 +187,7 @@ class _AdvicesScreenState extends State<AdvicesScreen> {
                                 ),
                               ),
                             ),
+                          SizedBox(height: 24.h)
                           ],
                         ),
                       ),

@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:footwear_designer_247/designer/colors.dart';
 import 'package:footwear_designer_247/designer/motion_wear.dart';
 import 'package:footwear_designer_247/designer/style_wear.dart';
-import 'package:footwear_designer_247/wear/design/data/models/shoe_hive_model.dart';
 import 'package:lottie/lottie.dart';
 
 class FeetCalculatorScreen extends StatefulWidget {
