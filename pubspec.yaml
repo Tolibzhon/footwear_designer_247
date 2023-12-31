@@ -42,6 +42,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   share_plus: ^7.2.1
+  lottie: ^2.5.0
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,7 @@ flutter:
     - assets/images/bootsType/
     - assets/images/clasp/
     - assets/images/additional_inserts/
+    - assets/animations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
